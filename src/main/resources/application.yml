@@ -1,0 +1,65 @@
+server:
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+    context-path: /
+  tomcat:
+    remoteip:
+      remote-ip-header: x-forwarded-for
+      protocol-header: x-forwarded-proto
+  port: 52000
+
+spring:
+  application:
+    name: @project.artifactId@
+  main:
+    allow-bean-definition-overriding: true
+    banner-mode: 'off'
+  cache:
+    type: REDIS
+  redis:
+    host: 127.0.0.1
+    password: yueliminvc@outlook.com
+    port: 6379
+    database: 0
+    timeout: 3000ms
+    lettuce:
+      pool:
+        max-idle: 8
+        min-idle: 1
+        max-active: 8
+        max-wait: 30000ms
+      shutdown-timeout: 10000ms
+
+management:
+  endpoints:
+    web:
+      base-path: /actuator
+      exposure:
+        include: '*'
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: always
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /doc-api.html
+  swagger-ui:
+    path: /swagger-ui.html
+    disable-swagger-default-url: on
+
+sms:
+  defaultExpire: 300
+  qcloud:
+    # your app id
+    appId: 000000
+    appKey: 'your_app_key'
+    templateId: 'your_sms_template'
+    sign: 'your_tencent_cloud_sms_sign'
+    # tencent sms api
+    url: 'https://yun.tim.qq.com/v5/tlssmssvr/sendsms'
